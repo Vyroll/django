@@ -1,0 +1,10 @@
+{% if schdule_list %}
+    <h1>departures</h1>
+    <ul>
+    {% for departure in schdule_list %}
+        <li>{{ departure.hour }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No departures are available.</p>
+{% endif %}

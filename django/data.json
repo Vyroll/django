@@ -1,0 +1,189 @@
+[
+    {
+        "model": "schedule.departure",
+        "pk": 1,
+        "fields": {
+            "hour": "4",
+            "minute": "40",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 2,
+        "fields": {
+            "hour": "6",
+            "minute": "05",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 3,
+        "fields": {
+            "hour": "6",
+            "minute": "10",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 4,
+        "fields": {
+            "hour": "7",
+            "minute": "45",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 5,
+        "fields": {
+            "hour": "7",
+            "minute": "10",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 6,
+        "fields": {
+            "hour": "8",
+            "minute": "30",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 7,
+        "fields": {
+            "hour": "11",
+            "minute": "00",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 8,
+        "fields": {
+            "hour": "12",
+            "minute": "15",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 9,
+        "fields": {
+            "hour": "13",
+            "minute": "05",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 10,
+        "fields": {
+            "hour": "14",
+            "minute": "25",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 11,
+        "fields": {
+            "hour": "14",
+            "minute": "30",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 12,
+        "fields": {
+            "hour": "15",
+            "minute": "40",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 13,
+        "fields": {
+            "hour": "17",
+            "minute": "30",
+            "direction": "ODJAZDY Z KRAKOWA",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 14,
+        "fields": {
+            "hour": "9",
+            "minute": "10",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 15,
+        "fields": {
+            "hour": "9",
+            "minute": "50",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 16,
+        "fields": {
+            "hour": "15",
+            "minute": "55",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    },
+    {
+        "model": "schedule.departure",
+        "pk": 17,
+        "fields": {
+            "hour": "15",
+            "minute": "strefa",
+            "direction": "ODJAZDY Z CHOBOTU",
+            "route": "CHOBOT - NIEPOŁOMICE - KRAKÓW",
+            "days": "PON. – PT."
+        }
+    }
+]
