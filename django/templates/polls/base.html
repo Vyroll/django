@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>{{ title|default:"default title"}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+
+
+<body>
+    {% include "polls/nav.html" %}
+
+    {% include "polls/messages.html" %}
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
