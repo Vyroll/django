@@ -28,12 +28,14 @@ class IndexView(generic.ListView):
 
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    choices = question.choice_set.all()
+
+    choices_tuple = tuple((choice.id,choice.choice_text) for choice in choices)
 
     form = ChoicesForm(initial={
-        'pk':question_id
-    })
+        'choices':choices_tuple
+    })    
     
-    choices = question.choice_set.all
     question_id = question.id
     question_text = question.question_text
 
@@ -59,9 +61,12 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    choices = question.choice_set.all
+    choices = question.choice_set.all()
     question_id = question.id
-    form = ChoicesForm(data=request.POST,initial={'pk':question_id})
+
+    choices_tuple = tuple((choice.id,choice.choice_text) for choice in choices)
+
+    form = ChoicesForm(data=request.POST,initial={'choices':choices_tuple})
 
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -90,15 +95,20 @@ class TestFormView(View):
     template_name = 'polls/testForm.html'
 
     def get(self, request, *args, **kwargs):
+        choices = Question.objects.get(pk=kwargs['pk']).choice_set.all()
+        choices = tuple((choice.id,choice.choice_text) for choice in choices)
+
         form = self.form_class(initial={
-            'pk':kwargs['pk']
+            'choices': choices
         })
 
         return render(request, self.template_name, {'form': form, 'question_id':kwargs['pk']})
 
     def post(self, request, *args, **kwargs):
+        choices = Question.objects.get(pk=kwargs['pk']).choice_set.all()
+        choices = tuple((choice.id,choice.choice_text) for choice in choices)
 
-        form = ChoicesForm(data=request.POST,initial={'pk':kwargs['pk']})
+        form = ChoicesForm(data=request.POST,initial={'choices':choices})
 
         if form.is_valid():
             if request.POST.get('choice') != None:
@@ -109,4 +119,4 @@ class TestFormView(View):
                 return HttpResponseRedirect(reverse('polls:results', args=(kwargs['pk'],)))
             messages.add_message(request, messages.ERROR, "You didn't select a choice.", "alert alert-danger")
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'question_id':kwargs['pk']})
