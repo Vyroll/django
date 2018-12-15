@@ -47,12 +47,19 @@ LOGGING = {
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'bootstrapform',
+    'django_activeurl',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.core.context_processors.request',
 ]
 
 MIDDLEWARE = [
