@@ -6,12 +6,13 @@ from django.utils import timezone
 from django.contrib import messages
 from django.views import View
 from .forms import ChoicesForm
+from django.db import IntegrityError, transaction
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-from .models import Question, Choice
+from .models import Question, Choice, Person, Task
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -110,3 +111,18 @@ class TestFormView(View):
             messages.add_message(request, messages.ERROR, "You didn't select a choice.", "alert alert-danger")
 
         return render(request, self.template_name, {'form': form})
+
+@transaction.atomic
+def createPerson(request):
+
+    try:
+        with transaction.atomic():
+            person = Person.objects.create(name="Person8")
+            task = Task.objects.create(title="Task6",person=person)
+    except IntegrityError:
+        messages.add_message(request, messages.ERROR, "Smth went wrong, obcjet was not crated", "alert alert-danger")
+        return HttpResponseRedirect(reverse('polls:index'))
+
+    messages.add_message(request, messages.ERROR, "You created an object", "alert alert-info")
+
+    return HttpResponseRedirect(reverse('polls:index'))
