@@ -1,0 +1,24 @@
+{% extends "polls/base.html" %}
+
+{% load bootstrap %}
+
+{% block content %}
+    <h1>createPerson VIEW</h1>
+    <h2>Create new person and task</h2>
+        <form action="{% url 'polls:createPerson' %}" method="post">
+            {% csrf_token %}
+            {{ form|bootstrap}}
+            <input type="submit" value="Create">
+        </form>
+    <h2>List Persons and Tasks</h2>
+    <ul>
+        {% for person in persons %}
+            <li>{{person}}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for task in tasks %}
+            <li>{{task}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

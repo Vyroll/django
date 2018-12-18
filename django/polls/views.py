@@ -5,7 +5,7 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
 from django.views import View
-from .forms import ChoicesForm
+from .forms import ChoicesForm, createPersonForm
 from django.db import IntegrityError, transaction
 
 import logging
@@ -112,17 +112,45 @@ class TestFormView(View):
 
         return render(request, self.template_name, {'form': form})
 
-@transaction.atomic
-def createPerson(request):
+class createPerson(View):
+    template_name = 'polls/createPerson.html'
+    form_class = createPersonForm
 
-    try:
-        with transaction.atomic():
-            person = Person.objects.create(name="Person8")
-            task = Task.objects.create(title="Task6",person=person)
-    except IntegrityError:
-        messages.add_message(request, messages.ERROR, "Smth went wrong, obcjet was not crated", "alert alert-danger")
-        return HttpResponseRedirect(reverse('polls:index'))
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        persons = Person.objects.all()
+        tasks = Task.objects.all()
 
-    messages.add_message(request, messages.ERROR, "You created an object", "alert alert-info")
+        return render(request, self.template_name, {'form':form, 'persons':persons, 'tasks':tasks})
 
-    return HttpResponseRedirect(reverse('polls:index'))
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        persons = Person.objects.all()
+        tasks = Task.objects.all()
+
+        if form.is_valid():
+            messages.add_message(request, messages.ERROR, "form is valid", "alert alert-info")
+
+            try:
+                with transaction.atomic():
+                    person = Person.objects.create(name=request.POST['person'])
+                    transaction.on_commit(lambda: log('1'))
+                    try:
+                        with transaction.atomic():
+                            task = Task.objects.create(title=request.POST['task'],person=person)
+                            transaction.on_commit(lambda: log('2'))
+                    except IntegrityError:
+                        messages.add_message(request, messages.ERROR, "Smth went wrong, task was not crated", "alert alert-danger")
+            except IntegrityError:
+                messages.add_message(request, messages.ERROR, "Smth went wrong, person was not crated", "alert alert-danger")
+            messages.add_message(request, messages.ERROR, "request complited", "alert alert-info")
+
+        else:
+            messages.add_message(request, messages.ERROR, "form is not valid", "alert alert-danger")
+
+        return render(request, self.template_name, {'form':form, 'persons':persons, 'tasks':tasks})
+
+def log(i):
+    logger.info(f"|{i}|Person.objects.all()|{Person.objects.all()}")
+    logger.info(f"|{i}|Task.objects.all()|{Task.objects.all()}")
