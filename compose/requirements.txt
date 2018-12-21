@@ -3,3 +3,7 @@ django-bootstrap-form
 django-activeurl
 django-extensions
 pygraphviz
+djangorestframework
+markdown
+django-filter
+pygments
