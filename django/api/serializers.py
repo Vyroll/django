@@ -34,8 +34,15 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('question_text', 'pub_date', 'was_published_recently', 'choice_set')
 
 class ChoiceSerializer(serializers.HyperlinkedModelSerializer):
-    question = serializers.ReadOnlyField(source='question.question_text')
+    # question_name = serializers.ReadOnlyField(source='question.question_text')
+    question = serializers.HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='question-detail'
+    )
 
     class Meta:
         model = Choice
-        fields = ('url', 'id', 'choice_text', 'question', 'votes')
+        fields = ('url', 'id', 'choice_text', 'votes', 
+        # 'question_name', 
+        'question',)
