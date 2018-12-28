@@ -11,7 +11,6 @@ from rest_framework.schemas import get_schema_view
 # app_name = 'api' # can use because of DRF reverse implementation
 
 router = DefaultRouter()
-router.register('snippets', views.SnippetViewSet)
 router.register('users', views.UserViewSet)
 router.register('Question', views.QuestionViewSet)
 router.register('Choice', views.ChoiceViewSet)

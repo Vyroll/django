@@ -60,7 +60,6 @@ class ResultsView(generic.DetailView):
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     choices = question.choice_set.all
-    question_id = question.id
     form = ChoicesForm(data=request.POST,initial={'pk':question_id})
 
     try:
@@ -98,7 +97,7 @@ class TestFormView(View):
 
     def post(self, request, *args, **kwargs):
 
-        form = ChoicesForm(data=request.POST,initial={'pk':kwargs['pk']})
+        form = self.form_class(data=request.POST,initial={'pk':kwargs['pk']})
 
         if form.is_valid():
             if request.POST.get('choice') != None:
