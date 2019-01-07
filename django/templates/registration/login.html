@@ -1,0 +1,23 @@
+{% extends "polls/base.html" %}
+
+{% load bootstrap %}
+
+{% block content %}
+    <h1>Login</h1>
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <form action="{% url 'polls:login' %}" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap}}
+        <input type="submit" value="Login">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{% endblock %}
+

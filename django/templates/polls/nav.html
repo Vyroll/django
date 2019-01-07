@@ -20,11 +20,36 @@
         {% comment %} HERE!!! left {% endcomment %}
         <li><a href="{% url 'polls:index' %}">Index <span class="sr-only">(current)</span></a></li>
         <li><a href="{% url 'polls:testForm' 1 %}">testForm</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Permisions<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% if perms.polls %}
+                {% if perms.polls.view_question %}
+                <li class="dropdown-header">You have permision to view_question!</li>
+                <li role="separator" class="divider"></li>
+                {% endif %}
+            {% endif %}
+            <li><a href="{% url 'polls:creategrouppermissions' %}">creategrouppermissions</a></li>
+          </ul>
+        </li>
       </ul>
       {% endactiveurl %}
       {% activeurl menu="no" %}
       <ul class="nav navbar-nav navbar-right">
         {% comment %} HERE!!! right {% endcomment %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+            <li class="dropdown-header">signed in as {{ user }}</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'polls:logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'polls:login' %}">Login</a></li>
+            <li><a href="{% url 'polls:register' %}">Register</a></li>
+        {% endif %}
+          </ul>
+        </li>
       </ul>
       {% endactiveurl %}
     </div><!-- /.navbar-collapse -->
