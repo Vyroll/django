@@ -9,3 +9,4 @@ django-filter
 pygments
 coreapi
 pyyaml
+rest_condition

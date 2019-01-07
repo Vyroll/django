@@ -43,6 +43,8 @@
         {% if user.is_authenticated %}
             <li class="dropdown-header">signed in as {{ user }}</li>
             <li role="separator" class="divider"></li>
+            <li><a href="{% url 'polls:gettoken' %}">gettoken</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{% url 'polls:logout' %}">Logout</a></li>
         {% else %}
             <li><a href="{% url 'polls:login' %}">Login</a></li>

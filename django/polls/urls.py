@@ -17,4 +17,5 @@ urlpatterns = [
         views.CreateGroupPermissions, 
         name='creategrouppermissions'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('gettoken/', views.GetTokenView, name='gettoken'),
 ]

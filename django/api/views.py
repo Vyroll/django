@@ -1,13 +1,11 @@
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework import permissions
-from rest_framework import renderers
-from rest_framework.decorators import action
-from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
 from polls.models import Question, Choice
 from .serializers import UserSerializer, QuestionSerializer, ChoiceSerializer
 from .permissions import IsCreatorOrReadOnly
+from rest_condition import Or
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -19,9 +17,8 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    permission_classes = (IsCreatorOrReadOnly,)
-
-
+    # permission_classes = (IsCreatorOrReadOnly,)
+    permission_classes = (Or(permissions.IsAuthenticated, TokenAuthentication),)
 class ChoiceViewSet(viewsets.ModelViewSet):
     queryset = Choice.objects.all()
     serializer_class = ChoiceSerializer

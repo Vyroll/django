@@ -47,6 +47,7 @@ LOGGING = {
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
     'polls.apps.PollsConfig',
     'api.apps.ApiConfig',
     'bootstrapform',

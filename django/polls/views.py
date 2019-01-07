@@ -13,10 +13,16 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import ChoicesForm
+from rest_framework.authtoken.models import Token
 from .models import Question, Choice
 
 import logging
 logger = logging.getLogger(__name__)
+
+def GetTokenView(request):
+    token = Token.objects.get(user=request.user)
+    messages.add_message(request, messages.INFO, f"Yout token is: \"{token}\"", "alert alert-info")
+    return HttpResponseRedirect(reverse('polls:index'))
 
 def CreateGroupPermissions(request):
     premium, created = Group.objects.get_or_create(name='premium')
