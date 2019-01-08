@@ -10,3 +10,4 @@ pygments
 coreapi
 pyyaml
 rest_condition
+djangorestframework_simplejwt
