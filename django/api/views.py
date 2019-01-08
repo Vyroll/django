@@ -6,6 +6,7 @@ from polls.models import Question, Choice
 from .serializers import UserSerializer, QuestionSerializer, ChoiceSerializer
 from .permissions import IsCreatorOrReadOnly
 from rest_condition import Or
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -18,7 +19,10 @@ class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     # permission_classes = (IsCreatorOrReadOnly,)
-    permission_classes = (Or(permissions.IsAuthenticated, TokenAuthentication),)
+    # permission_classes = (Or(permissions.IsAuthenticated, TokenAuthentication),)
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = (permissions.IsAuthenticated, )
+
 class ChoiceViewSet(viewsets.ModelViewSet):
     queryset = Choice.objects.all()
     serializer_class = ChoiceSerializer

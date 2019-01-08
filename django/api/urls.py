@@ -8,6 +8,12 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from rest_framework.schemas import get_schema_view
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
 # app_name = 'api' # can use because of DRF reverse implementation
 
 router = DefaultRouter()
@@ -20,4 +26,7 @@ schema_view = get_schema_view(title='Pastebin API')
 urlpatterns = [
     path('schema/', schema_view),
     path('', include(router.urls)),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
