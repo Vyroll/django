@@ -14,7 +14,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-# app_name = 'api' # can use because of DRF reverse implementation
+# app_name = 'api' # can't use because of DRF reverse implementation
 
 router = DefaultRouter()
 router.register('users', views.UserViewSet)
@@ -24,9 +24,10 @@ router.register('Choice', views.ChoiceViewSet)
 schema_view = get_schema_view(title='Pastebin API')
 
 urlpatterns = [
-    path('schema/', schema_view),
     path('', include(router.urls)),
+    path('schema/', schema_view),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]

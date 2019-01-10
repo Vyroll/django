@@ -1,9 +1,10 @@
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
 
 from . import views
 
 app_name = 'polls'
+
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
@@ -18,4 +19,5 @@ urlpatterns = [
         name='creategrouppermissions'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('gettoken/', views.GetTokenView, name='gettoken'),
+    path('oauth/', RedirectView.as_view(url='/api/o/applications/'), name='oauth'),
 ]

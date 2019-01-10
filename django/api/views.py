@@ -7,6 +7,7 @@ from .serializers import UserSerializer, QuestionSerializer, ChoiceSerializer
 from .permissions import IsCreatorOrReadOnly
 from rest_condition import Or
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope, OAuth2Authentication, IsAuthenticatedOrTokenHasScope
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -20,8 +21,12 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     # permission_classes = (IsCreatorOrReadOnly,)
     # permission_classes = (Or(permissions.IsAuthenticated, TokenAuthentication),)
-    authentication_classes = (JWTAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, )
+    # authentication_classes = (JWTAuthentication,)
+    # permission_classes = (permissions.IsAuthenticated, )
+
+    authentication_classes = [OAuth2Authentication]
+    permission_classes = [TokenHasScope]
+    required_scopes = ['question']
 
 class ChoiceViewSet(viewsets.ModelViewSet):
     queryset = Choice.objects.all()

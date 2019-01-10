@@ -11,3 +11,4 @@ coreapi
 pyyaml
 rest_condition
 djangorestframework_simplejwt
+django-oauth-toolkit

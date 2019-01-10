@@ -46,6 +46,7 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
+    'oauth2_provider',
     'rest_framework',
     'rest_framework.authtoken',
     'polls.apps.PollsConfig',
@@ -145,7 +146,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'question': 'Acces to Questions',
+    }
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
