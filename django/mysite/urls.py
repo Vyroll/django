@@ -27,4 +27,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('accounts/login/', auth_views.LoginView.as_view()),
+    path('allauth/', include('allauth.urls')),
 ]

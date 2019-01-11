@@ -48,7 +48,15 @@
             <li role="separator" class="divider"></li>
             <li><a href="{% url 'polls:logout' %}">Logout</a></li>
         {% else %}
-            <li><a href="{% url 'polls:login' %}">Login</a></li>
+          {% load socialaccount %}
+            <li class="dropdown-header">Login</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'polls:login' %}">Basic</a></li>
+            <li>
+              <a href="{% provider_login_url "facebook" method="oauth2" %}">With Facebook</a>
+            </li>
+            <li><a href="/allauth/google/login">With Google</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{% url 'polls:register' %}">Register</a></li>
         {% endif %}
           </ul>
